@@ -292,7 +292,9 @@ void sendDriverCtrl( int & sendSocket, const double & simTime, const unsigned in
     {
         time_temp=2*mNearestObject.base.pos.x/ownSpeed;
         accelTgtSpeed=-2*ownSpeed/time_temp;
-    }  
+    } 
+    if(accelTgtDist>3)
+	accelTgtDist=3;
   }
     
   fprintf( stderr, "sendDriverCtrl: accelDist = %.5lf, accelSpeed = %.5lf\n", accelTgtDist, accelTgtSpeed );
