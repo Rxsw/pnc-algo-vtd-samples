@@ -271,7 +271,7 @@ void sendDriverCtrl( int & sendSocket, const double & simTime, const unsigned in
 
   double accelTgtDist  = 0.0;
   double accelTgtSpeed = ( 30.0 - ownSpeed ) / 5.0;   // default speed should be own preferred speed
-  
+  double time_temp = 0.0
   if ( haveSensorObject )
   {
     // let's go for the same speed as preceding vehicle: 
@@ -283,10 +283,16 @@ void sendDriverCtrl( int & sendSocket, const double & simTime, const unsigned in
     // let's go for a 2s distance
     double tgtDist = ownSpeed * 2.0;
   
-    if ( tgtDist < 10.0 )   // minimum  distance to keep
-        tgtDist = 10.0;
+    if ( tgtDist < 15.0 )   // minimum  distance to keep
+        tgtDist = 15.0;
         
-    accelTgtDist = ( mNearestObject.base.pos.x - tgtDist ) / 10.0;    
+    accelTgtDist = ( mNearestObject.base.pos.x - tgtDist ) / 10.0;  
+    
+    if(mNearestObject.base.pos.x<8)
+    {
+        time_temp=2*mNearestObject.base.pos.x/ownSpeed
+        accelTgtSpeed=-2*ownSpeed/time_temp
+    }  
   }
     
   fprintf( stderr, "sendDriverCtrl: accelDist = %.5lf, accelSpeed = %.5lf\n", accelTgtDist, accelTgtSpeed );
