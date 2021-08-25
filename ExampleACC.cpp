@@ -293,14 +293,14 @@ void sendDriverCtrl( int & sendSocket, const double & simTime, const unsigned in
         time_temp=2*mNearestObject.base.pos.x/ownSpeed;
         accelTgtSpeed=-2*ownSpeed/time_temp;
     } 
-    if(accelTgtDist>3)
-	accelTgtDist=3;
+    if(accelTgtSpeed>3)
+	accelTgtSpeed=3;
   }
     
   fprintf( stderr, "sendDriverCtrl: accelDist = %.5lf, accelSpeed = %.5lf\n", accelTgtDist, accelTgtSpeed );
     
   myDriver->playerId      = 1;
-  myDriver->accelTgt      = accelTgtDist + accelTgtSpeed;
+  myDriver->accelTgt      = accelTgtSpeed;
   myDriver->validityFlags = RDB_DRIVER_INPUT_VALIDITY_TGT_ACCEL | RDB_DRIVER_INPUT_VALIDITY_ADD_ON;
 
   int retVal = send( sendSocket, ( const char* ) ( myHandler.getMsg() ), myHandler.getMsgTotalSize(), 0 );
