@@ -300,7 +300,7 @@ void sendDriverCtrl( int & sendSocket, const double & simTime, const unsigned in
   fprintf( stderr, "sendDriverCtrl: accelDist = %.5lf, accelSpeed = %.5lf\n", accelTgtDist, accelTgtSpeed );
     
   myDriver->playerId      = 1;
-  myDriver->accelTgt      = accelTgtSpeed;
+  myDriver->accelTgt      = accelTgtDist + accelTgtSpeed;
   myDriver->validityFlags = RDB_DRIVER_INPUT_VALIDITY_TGT_ACCEL | RDB_DRIVER_INPUT_VALIDITY_ADD_ON;
 
   int retVal = send( sendSocket, ( const char* ) ( myHandler.getMsg() ), myHandler.getMsgTotalSize(), 0 );
