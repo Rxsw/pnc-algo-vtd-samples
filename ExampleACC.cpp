@@ -270,7 +270,7 @@ void sendDriverCtrl( int & sendSocket, const double & simTime, const unsigned in
   double ownSpeed = sqrt( mOwnObject.ext.speed.x * mOwnObject.ext.speed.x + mOwnObject.ext.speed.y * mOwnObject.ext.speed.y );
 
   double accelTgtDist  = 0.0;
-  double accelTgtSpeed = ( 30.0 - ownSpeed ) / 5.0;   // default speed should be own preferred speed
+  double accelTgtSpeed = ( 20.0 - ownSpeed ) / 7.0;   // default speed should be own preferred speed
   double time_temp = 0.0;
   if ( haveSensorObject )
   {
